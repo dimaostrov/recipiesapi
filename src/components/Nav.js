@@ -8,7 +8,9 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 
-import { Link } from "gatsby";
+import { Link as ScrollLink } from 'react-scroll'
+
+import { Link as GatsbyLink } from "gatsby";
 
 const styles = {
   root: {
@@ -23,22 +25,20 @@ const styles = {
   },
 };
 
-function ButtonAppBar(props) {
-  const { classes } = props;
+function ButtonAppBar({classes}) {
   return (
     <div className={classes.root}>
-      <AppBar position="static">
+      <AppBar position="fixed">
         <Toolbar>
           <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" color="inherit" className={classes.grow}>
+          <Typography component={ScrollLink} to='hero' smooth={true} variant="h6" color="inherit" className={classes.grow}>
             Dmitriy Ostrov Personal Site
           </Typography>
-          <Button color="inherit">Portfolio</Button>
-          <Button color="inherit">About</Button>
-          <Button color="inherit">Contact</Button>
-          <Button component={Link} to="/demo">Recipes Demo</Button>
+          <Button component={ScrollLink} to='portfolio' smooth={true} color="inherit" >Portfolio</Button>
+          <Button component={ScrollLink} to='about' smooth={true} color="inherit">About</Button>
+          <Button component={GatsbyLink} to="/demo">Recipes Demo</Button>
         </Toolbar>
       </AppBar>
     </div>

@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Typography from "@material-ui/core/Typography";
 import { withStyles } from "@material-ui/core/styles";
 import withRoot from "../withRoot";
 
@@ -9,7 +8,16 @@ import Hero from "../components/Hero";
 import About from "../components/About";
 import Portfolio from "../components/Portfolio";
 // import Skills from '../components/Skills';
-import Footer from '../components/Footer'
+import Footer from "../components/Footer";
+
+import {
+  Link,
+  Element,
+  Events,
+  animateScroll as scroll,
+  scrollSpy,
+  scroller
+} from "react-scroll";
 
 const styles = theme => ({
   root: {
@@ -19,21 +27,26 @@ const styles = theme => ({
 });
 
 class Index extends React.Component {
-  state = {
-    open: false
-  };
-
-  handleClose = () => {
-    this.setState({
-      open: false
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+  componentDidMount() {
+    Events.scrollEvent.register("begin", function(to, element) {
+      console.log("begin", arguments);
     });
-  };
 
-  handleClick = () => {
-    this.setState({
-      open: true
+    Events.scrollEvent.register("end", function(to, element) {
+      console.log("end", arguments);
     });
-  };
+
+    scrollSpy.update();
+  }
+
+  componentWillUnmount() {
+    Events.scrollEvent.remove("begin");
+    Events.scrollEvent.remove("end");
+  }
 
   render() {
     const { classes } = this.props;
@@ -41,9 +54,15 @@ class Index extends React.Component {
       <>
         <Nav />
         <div className={classes.root}>
+          <Element name="hero">
           <Hero />
+          </Element>
+          <Element name="about">
           <About />
-          <Portfolio />
+          </Element>
+          <Element name="portfolio">
+            <Portfolio />
+          </Element>
           <Footer />
         </div>
       </>

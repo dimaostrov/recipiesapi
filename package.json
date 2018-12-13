@@ -13,6 +13,7 @@
     "react": "16.7.0-alpha.0",
     "react-dom": "16.7.0-alpha.0",
     "react-jss": "16.7.0-alpha.0",
+    "react-scroll": "^1.7.10",
     "use-debounce": "^0.0.7"
   },
   "scripts": {
