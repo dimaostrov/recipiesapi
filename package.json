@@ -23,5 +23,6 @@
   },
   "devDependencies": {
     "firebase": "^5.7.0"
-  }
+  },
+  "proxy": "http://localhost:3000"
 }
