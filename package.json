@@ -6,5 +6,9 @@
   ],
   "dependencies": {
     "chalk": "^2.4.1"
+  },
+  "scripts": {
+    "frontend": "cd packages && cd frontend && yarn develop",
+    "seed": "cd packages && cd server && yarn scrape"
   }
 }
