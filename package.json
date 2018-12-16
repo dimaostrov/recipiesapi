@@ -1,18 +1,20 @@
 {
+  "name": "recipe-cart",
+  "version": "0.0.0",
   "private": true,
-  "workspaces": [
-    "packages/*"
-  ],
   "scripts": {
-    "compile": "lerna run compile",
-    "clean": "lerna run clean",
-    "lint": "lerna run lint",
-    "test": "lerna run test",
-    "update-version": "lerna publish --skip-git --skip-npm --force-publish '*'",
-    "check-packages": "yarn clean && yarn compile && yarn test && yarn lint",
-    "publish-packages": "./scripts/publish"
+    "dev": "nodemon ./bin/www"
   },
-  "devDependencies": {
-    "lerna": "^2.11.0"
+  "dependencies": {
+    "agenda": "^2.0.2",
+    "body-parser": "^1.18.3",
+    "cookie-parser": "~1.4.3",
+    "debug": "^2.6.9",
+    "dotenv": "^6.2.0",
+    "express": "~4.16.0",
+    "mongodb": "^3.1.10",
+    "mongoose": "^5.3.16",
+    "morgan": "~1.9.0",
+    "node-fetch": "^2.3.0"
   }
 }
