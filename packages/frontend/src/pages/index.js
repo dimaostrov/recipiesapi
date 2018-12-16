@@ -8,6 +8,7 @@ import { Link } from "gatsby";
 import withRoot from "../withRoot";
 import { setConfig } from "react-hot-loader";
 import axios from "axios";
+import ParseCode from '../components/ParseCode'
 
 setConfig({ pureSFC: true });
 
@@ -29,7 +30,7 @@ const styles = theme => ({
 
 function AmazonRecipe(props) {
   const { classes } = props;
-  const [input, changeInput] = useState();
+  const [input, changeInput] = useState('pizza');
   const [recipes, changeRecipes] = useState();
   const fetchData = async () => {
     const data = await axios.post("http://localhost:3000/api/search", {
@@ -37,6 +38,7 @@ function AmazonRecipe(props) {
     })
 
     changeRecipes(data.data);
+    console.log(recipes)
   };
   const updateResults = (e) => {
     changeInput(e.target.value)
@@ -51,8 +53,9 @@ function AmazonRecipe(props) {
       <Button component={Link} to="/" className={classes.backButton}>
         Back
       </Button>
-      <Input className={classes.search} onChange={e => updateResults(e)} />
+      <Input className={classes.search} onChange={e => e.target.value.length > 3 && updateResults(e)} />
       {console.log(recipes)}
+      {<ParseCode />}
       <div style={{display: 'flex', flexWrap: 'wrap' }}>
       {recipes && recipes.map(x => <RecipeCard recipe={x}/>)}
       </div>

@@ -1,28 +1,18 @@
 {
-  "name": "gatsby",
-  "version": "3.0.0",
   "private": true,
-  "dependencies": {
-    "@material-ui/core": "latest",
-    "@material-ui/icons": "^3.0.1",
-    "axios": "^0.18.0",
-    "debounce-hook": "^1.0.0",
-    "gatsby": "latest",
-    "jss": "latest",
-    "prop-types": "latest",
-    "react": "16.7.0-alpha.0",
-    "react-dom": "16.7.0-alpha.0",
-    "react-jss": "16.7.0-alpha.0",
-    "react-scroll": "^1.7.10",
-    "use-debounce": "^0.0.7"
-  },
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
-    "develop": "gatsby develop",
-    "build": "gatsby build",
-    "serve": "gatsby serve"
+    "compile": "lerna run compile",
+    "clean": "lerna run clean",
+    "lint": "lerna run lint",
+    "test": "lerna run test",
+    "update-version": "lerna publish --skip-git --skip-npm --force-publish '*'",
+    "check-packages": "yarn clean && yarn compile && yarn test && yarn lint",
+    "publish-packages": "./scripts/publish"
   },
   "devDependencies": {
-    "firebase": "^5.7.0"
-  },
-  "proxy": "http://localhost:3000"
+    "lerna": "^2.11.0"
+  }
 }
